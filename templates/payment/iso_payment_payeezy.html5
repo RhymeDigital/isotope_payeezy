@@ -1,0 +1,29 @@
+<div class="payeezyPaymentForm paymentMethod_<?php echo $this->id; ?>">
+  <div class="inside">
+  <?php if (!$this->tableless): ?>
+    <?php echo $this->parsed; ?>
+  <?php else: ?>
+  	<div class="frontOfCard">
+  	  <div class="cardNumber">
+	  	  <div class="field"><?php echo $this->field_x_card_num; ?></div>
+  	  </div>
+  	  <div class="cardTypes">
+  		<?php echo $this->field_x_card_type; ?>
+  	  </div>
+  	  <div class="cardExp">
+	  	  <div class="field"><?php echo $this->field_card_expirationMonth; ?><?php echo $this->field_card_expirationYear; ?></div>
+  	  </div>
+  	</div>
+  	<?php if ($this->requireCCV): ?>
+  	<div class="backOfCard">
+  	  <div class="cardStrip">
+  	  </div>
+  	  <div class="cardCode">
+	  	  <div class="field"><?php echo $this->field_x_card_code; ?></div>
+  	  </div>
+    <?php endif; ?>
+  	</div>
+  	<div class="clear"></div>
+  <?php endif; ?>
+  </div>
+</div>
