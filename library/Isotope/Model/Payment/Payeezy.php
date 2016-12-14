@@ -481,9 +481,6 @@ class Payeezy extends Payment implements IsotopePayment
 		
         $this->objResponse = json_decode($objPayeezy->authorize($authPayload));
         
-log_message(static::varDumpToString('Response 1'), 'debugaf.log');
-log_message(static::varDumpToString($this->objResponse), 'debugaf.log');
-        
         // Auth only
         if ($this->payeezy_auth_capture == 'AUTH_ONLY')
         {
@@ -522,9 +519,6 @@ log_message(static::varDumpToString($this->objResponse), 'debugaf.log');
 	            );
 	            
 	            $this->objResponse = json_decode($objPayeezy->capture($capturePayload));
-        
-log_message(static::varDumpToString('Response 2'), 'debugaf.log');
-log_message(static::varDumpToString($this->objResponse), 'debugaf.log');
 	            
 		        if ($this->objResponse && $this->objResponse->transaction_status && strtolower($this->objResponse->transaction_status) == 'approved')
 		        {
