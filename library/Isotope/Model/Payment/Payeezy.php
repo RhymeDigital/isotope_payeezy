@@ -519,14 +519,12 @@ class Payeezy extends Payment implements IsotopePayment
 	            );
 
                 /**
-                 * HOOK: Custom actions before saving the order
+                 * HOOK: Custom actions before sending capture
                  */
-                if (isset($GLOBALS['ISO_HOOKS']['payeezy_capture_payload']) && is_array($GLOBALS['ISO_HOOKS']['payeezy_capture_payload']))
-                {
-                    foreach ($GLOBALS['ISO_HOOKS']['payeezy_capture_payload'] as $callback)
-                    {
-                        $this->import($callback[0]);
-                        $capturePayload = $this->{$callback[0]}->{$callback[1]}($capturePayload);
+                if (isset($GLOBALS['ISO_HOOKS']['payeezy_capture_payload']) && is_array($GLOBALS['ISO_HOOKS']['payeezy_capture_payload'])) {
+                    foreach ($GLOBALS['ISO_HOOKS']['payeezy_capture_payload'] as $callback) {
+                        $objCallback = \System::importStatic($callback[0]);
+                        $capturePayload = $objCallback->$callback[1]($capturePayload, $objModule, $objOrder, $this);
                     }
                 }
 	            
